@@ -30,7 +30,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public List<Account> listAllAccount() {
-        
-        return null;
+
+        return accountRepository.findAll();
     }
 }
