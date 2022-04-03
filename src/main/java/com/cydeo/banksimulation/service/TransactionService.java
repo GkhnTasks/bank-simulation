@@ -13,4 +13,6 @@ public interface TransactionService {
     , Account sender,Account receiver,String message);
 
     List<Transaction> findAll();
+
+    List<Transaction> retriveLastTransaction();
 }
