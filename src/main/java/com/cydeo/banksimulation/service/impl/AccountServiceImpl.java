@@ -1,6 +1,6 @@
 package com.cydeo.banksimulation.service.impl;
 
-import com.cydeo.banksimulation.entity.Account;
+import com.cydeo.banksimulation.model.Account;
 import com.cydeo.banksimulation.enums.AccountType;
 import com.cydeo.banksimulation.repository.AccountRepository;
 import com.cydeo.banksimulation.service.AccountService;
@@ -32,5 +32,10 @@ public class AccountServiceImpl implements AccountService {
     public List<Account> listAllAccount() {
 
         return accountRepository.findAll();
+    }
+
+    @Override
+    public void deleteAccount(UUID account) {
+        
     }
 }

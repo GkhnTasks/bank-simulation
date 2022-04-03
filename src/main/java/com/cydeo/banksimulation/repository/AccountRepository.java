@@ -1,6 +1,6 @@
 package com.cydeo.banksimulation.repository;
 
-import com.cydeo.banksimulation.entity.Account;
+import com.cydeo.banksimulation.model.Account;
 import com.cydeo.banksimulation.exception.RecordNotFoundException;
 import org.springframework.stereotype.Component;
 
