@@ -17,9 +17,8 @@ public class Account {
     private BigDecimal balance;
     private AccountStatus accountStatus;
     private AccountType accountType;
-    private Date creatingDate;
+    private Date creationDate;
     private Long userId;
-
 
 
 }

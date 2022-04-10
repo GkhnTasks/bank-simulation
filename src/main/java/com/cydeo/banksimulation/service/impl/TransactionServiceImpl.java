@@ -21,7 +21,8 @@ import java.util.UUID;
 @Component
 public class TransactionServiceImpl implements TransactionService {
 
-    @Value("false")
+
+    @Value("${under_construction}")
     private boolean underConstruction;
 
     AccountRepository accountRepository;
@@ -94,7 +95,12 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
-    public List<Transaction> retriveLastTransaction() {
-        return transactionRepository.retrieveLastTransaction();
+    public List<Transaction> retrieveLastTransaction() {
+        return transactionRepository.retrieveLastTransactions();
+    }
+
+    @Override
+    public List<Transaction> findTransactionListById(UUID id) {
+        return transactionRepository.findTransactionListById(id);
     }
 }

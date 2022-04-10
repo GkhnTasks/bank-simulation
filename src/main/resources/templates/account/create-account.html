@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -15,12 +14,13 @@
 <div class="container my-5">
     <h2 class="mb-5">New User</h2>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-3">
+
             <form th:action="@{/create}" th:object="${account}" method="post">
                 <div class="row">
                     <div class="form-group blu-margin">
-                        <label >UserId</label>
-                        <input type="text" th:field="*{userId}" placeholder="user id">
+                        <label>UserId</label>
+                        <input type="text" th:field="*{userId}" placeholder="userId">
                     </div>
 
                     <div class="form-group blu-margin">
@@ -29,10 +29,11 @@
                     </div>
 
                     <div class="form-group blu-margin">
-                        <label for="dropOperator" class="col-form-label">Account Type</label>
-                        <select class="form-control"  id="dropOperator">
+                        <label>Account Type</label>
+                        <select th:field="*{accountType}" class="form-control"  >
                             <option value="0">Select Account </option>
-                            <option></option>
+                            <option th:each="accountType : ${accountTypes}" th:value="${accountType.name()}"
+                                    th:text="${accountType.name}"></option>
                         </select>
                     </div>
                 </div>

@@ -8,10 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Date;
+import java.util.UUID;
 
 @Controller
 public class TransactionController {
@@ -24,26 +25,33 @@ public class TransactionController {
         this.transactionService = transactionService;
     }
 
+
     @GetMapping("/make-transfer")
     public String retrieveTransactionForm(Model model){
-
-       model.addAttribute("accounts",accountService.listAllAccount());
-       model.addAttribute("transaction", Transaction.builder().build());
-       model.addAttribute("lastTransactionlist",transactionService.retriveLastTransaction());
+        model.addAttribute("accounts", accountService.listAllAccount());
+        model.addAttribute("transaction", Transaction.builder().build());
+        model.addAttribute("lastTransactionList", transactionService.retrieveLastTransaction());
 
         return "transaction/make-transfer";
+
     }
+
 
     @PostMapping("/transfer")
-    public String makeTransfer(@ModelAttribute("transaction") Transaction transaction){
+    public String makeTransfer(@ModelAttribute("transaction")Transaction transaction){
 
-        Account receiver=accountService.retriveById(transaction.getReceiver());
-        Account sender=accountService.retriveById(transaction.getSender());
-        transactionService.makeTransfer(transaction.getAmount(),new Date(),sender,receiver,transaction.getMessage());
-
-
+        Account reciever = accountService.retriveById(transaction.getReceiver());
+        Account sender = accountService.retriveById(transaction.getSender());
+        transactionService.makeTransfer(transaction.getAmount(),new Date(),sender,reciever,transaction.getMessage());
         return "redirect:/make-transfer";
+
     }
 
+    @GetMapping("/transaction/{id}")
+    public String transactionDetailById(@PathVariable("id")UUID id, Model model) {
 
+        model.addAttribute("transactionList", transactionService.findTransactionListById(id));
+
+        return "transaction/transactions";
+    }
 }
