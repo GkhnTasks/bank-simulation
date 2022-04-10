@@ -22,7 +22,7 @@ import java.util.UUID;
 public class TransactionServiceImpl implements TransactionService {
 
 
-    @Value("${under_construction}")
+    @Value("false")
     private boolean underConstruction;
 
     AccountRepository accountRepository;
